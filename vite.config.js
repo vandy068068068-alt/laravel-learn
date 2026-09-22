@@ -16,9 +16,20 @@ export default defineConfig({
         }),
         tailwindcss(),
     ],
-    server: {
-        watch: {
-            ignored: ['**/storage/framework/views/**'],
+       server: {
+        host: '0.0.0.0',
+    
+        port: 5173,
+        hmr: {
+            protocol: 'ws',
+            host: process.env.VITE_HMR_HOST || 'localhost',
+            port: 5173,
         },
+        watch: {
+            usePolling: true,
+            useFsEvents: true,
+            interval: 1000,
+        }
     },
+
 });
